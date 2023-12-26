@@ -8,7 +8,7 @@ const SignInForm = () => {
 
     const [email, setEmail] = useState ('');
     const [password, setPassword] = useState ('');
-    const [passwordForgotten, setPasswordForgotten] = useState ('');
+    const [passwordForgotten, setPasswordForgotten] = useState (false);
 
     const handleResetPassword = (e) => {
       e.preventDefault();

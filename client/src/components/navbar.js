@@ -10,7 +10,7 @@ const Navbar = () => {
     const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
-        const fetchUserEmail = async () => {
+        const fetchUserPseudo = async () => {
           try {
             const response = await axios.get(`${apiUrl}api/user/${uid}`);
             setUserPseudo(response.data.pseudo);
@@ -19,7 +19,7 @@ const Navbar = () => {
           }
         };
     
-        fetchUserEmail();
+        fetchUserPseudo();
       }, [uid]);
 
 
