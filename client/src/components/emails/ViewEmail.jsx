@@ -51,15 +51,15 @@ const Date = styled(Typography)({
     color: '#5E5E5E'
 })
 
-const ViewEmail = () => {
+const ViewEmail = (openDrawer) => {
 
-    const { openDrawer } = useOutletContext();
+ 
     
     const { state } = useLocation();
     const { email } = state;
 
     return (
-        <Box style={openDrawer ? { marginLeft: 250, width: '100%' } : { width: '100%' } }>
+        <Box style={openDrawer ? { marginLeft: 200, width: '86%' } : { marginLeft: 16, width: '100%' } }>
             <IconWrapper>
                 <ArrowBack fontSize='small' color="action" onClick={() => window.history.back() } />
                 <Delete fontSize='small' color="action" style={{ marginLeft: 40 }} />
@@ -74,9 +74,9 @@ const ViewEmail = () => {
                             <Box component="span">&nbsp;&#60;{email.to}&#62;</Box>
                         </Typography>
                         <Date>
-                            {(new window.Date(email.date)).getDate()}&nbsp;
-                            {(new window.Date(email.date)).toLocaleString('default', { month: 'long' })}&nbsp;
-                            {(new window.Date(email.date)).getFullYear()} 
+                            {(new window.Date(email.sentAt)).getDate()}&nbsp;
+                            {(new window.Date(email.sentAt)).toLocaleString('default', { month: 'long' })}&nbsp;
+                            {(new window.Date(email.sentAt)).getFullYear()} 
                         </Date>
                     </Box>
                     <Typography style={{ marginTop: 20 }}>{email.body}</Typography>

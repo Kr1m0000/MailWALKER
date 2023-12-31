@@ -65,7 +65,13 @@ const userSchema = new mongoose.Schema(
     },
     binEmails: {
       type: [String]
-    }
+    },
+    Notes: {
+      type: [String]
+    },
+    binNotes: {
+      type: [String]
+    }  
   },
   {
     timestamps: true,

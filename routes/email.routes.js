@@ -4,7 +4,7 @@ const emailController = require ('../controllers/email.controller.js');
 router.post('/save', emailController.saveSendEmails);
 //router.post('/save-draft', emailController.saveSendEmails);
 
-router.post('/inbox', emailController.getReceivedEmails);
+router.get('/inbox/:email', emailController.getReceivedEmails);
 router.get('/sentemails/:email', emailController.getSentEmails);
 
 router.post('/starred/:email', emailController.toggleStarredEmail);

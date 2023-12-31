@@ -66,7 +66,7 @@ module.exports.getSentEmails = async (req, res) => {
 module.exports.getReceivedEmails = async (req, res) => {
   try {
  
-    const loggedInUserPseudo = req.body.email; 
+    const loggedInUserPseudo = req.params.email; 
     const loggedInUser = await UserModel.findOne({ email: loggedInUserPseudo });
 
     const Emails = loggedInUser.receivedEmails || [];

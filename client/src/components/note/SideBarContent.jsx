@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { Button, List, ListItem, Box, styled } from '@mui/material';
-import ComposeMail from './ComposeMail';
-import { SIDEBAR_DATA } from '../../config/sidebar.config';
+import ComposeNote from './ComposeNote';
+import { SIDEBAR_DATA } from '../../config/notesidebar.config';
 import { CreateOutlined } from '@mui/icons-material';
 import { NavLink, useParams } from 'react-router-dom';
 
 
 const Container = styled(Box)`
-    padding: 15px;
+    padding: 16px;
     & > ul {
-        padding: 10px 0 0 5px;
-        font-size: 14px;
-        font-weight: 500;
+        padding: 20px 0 0 5px;
+        font-size: 20px;
+        font-weight: 700;
         cursor: pointer;
         & > a {
             text-decoration: none;
@@ -32,7 +32,7 @@ const ComposeButton = styled(Button)`
     text-transform: none;
 `
 
-const SideBarContent = (mailboxEndpoint) => {
+const SideBarContent = () => {
 
     const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -45,21 +45,21 @@ const SideBarContent = (mailboxEndpoint) => {
     return (
         <Container>
             <ComposeButton onClick={() => onComposeClick()}>
-                <CreateOutlined style={{ marginRight: 10 }} />Compose
+                <CreateOutlined style={{ marginRight: 10 }} />New note
             </ComposeButton>
             <List>
                 {
                     SIDEBAR_DATA.map(data => (
-                        <NavLink key={data.name} to={`/email/${data.name}`}>
-                            <ListItem style={ mailboxEndpoint === "izan/" + data.name.toLowerCase() ? {
+                        <NavLink key={data.name} to={`/note/${data.name}`}>
+                            <ListItem style={ type === "izan/" + data.name.toLowerCase() ? {
                                 backgroundColor: 'white',
                                 borderRadius: '0 16px 16px 0'
-                            } : {}}><data.icon fontSize="small" />{data.title}</ListItem>
+                            } : {}}><data.icon fontSize="medium" />{data.title}</ListItem>
                         </NavLink>
                     ))
                 }
             </List>
-            <ComposeMail open={openDrawer} setOpenDrawer={setOpenDrawer} />
+            <ComposeNote open={openDrawer} setOpenDrawer={setOpenDrawer} />
         </Container>
     )
 }

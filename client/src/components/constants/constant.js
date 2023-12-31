@@ -10,23 +10,27 @@ export const VIEWS = {
 }
 
 export const EMPTY_TABS = {
-    inbox: {
+    "api/email/inbox": {
         heading: 'Your inbox is empty',
         subHeading: "Mails that don't appear in other tabs will be shown here."
     },
-    drafts: {
+    "api/email/drafts": {
         heading: "You don't have any saved drafts.",
         subHeading: "Saving a draft allows you to keep a message you aren't ready to send yet."
     },
-    starred: {
+    "api/email/starreddisplay": {
         heading: 'No starred messages',
-        subHeading: "Stars let you give messages a special status to make them easier to find. To star a message, click on the star outline beside any message or conversation."
+        subHeading: "Stars let you give messages a special status to make them easier to find."
     },
-    sent: {
+    "api/email/sentemails": {
         heading: 'No sent messages!',
         subHeading: 'Send one now!'
     },
-    bin: {
+    "api/email/all": {
+        heading: 'No conversations in Bin.',
+        subHeading: ''
+    },
+    "api/email/bindisplay": {
         heading: 'No conversations in Bin.',
         subHeading: ''
     }
