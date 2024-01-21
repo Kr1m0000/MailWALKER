@@ -3,6 +3,7 @@ import Log from '../components/log';
 import { UidContext } from '../components/AppContext';
 import Navbar from '../components/navbar';
 
+
 const Profil = () => {
   const uid = useContext(UidContext);
 
@@ -10,7 +11,7 @@ const Profil = () => {
   return (
     <>
     <Navbar/>
-    <div className='profil-page'>
+    <div className='contact-page-wrapper'>
      
       {uid ? 
       (

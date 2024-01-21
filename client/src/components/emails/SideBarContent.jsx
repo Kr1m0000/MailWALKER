@@ -30,9 +30,11 @@ const ComposeButton = styled(Button)`
     padding: 15px;
     min-width: 150px;
     text-transform: none;
+    font-size: 16px;
+    font-weight: 700;
 `
 
-const SideBarContent = (mailboxEndpoint) => {
+const SideBarContent = ({mailboxEndpoint}) => {
 
     const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -51,8 +53,8 @@ const SideBarContent = (mailboxEndpoint) => {
                 {
                     SIDEBAR_DATA.map(data => (
                         <NavLink key={data.name} to={`/email/${data.name}`}>
-                            <ListItem style={ mailboxEndpoint === "izan/" + data.name.toLowerCase() ? {
-                                backgroundColor: 'white',
+                            <ListItem style={ mailboxEndpoint === "api/email/" + data.name.toLowerCase() ? {
+                                backgroundColor: '#d3e3fd',
                                 borderRadius: '0 16px 16px 0'
                             } : {}}><data.icon fontSize="small" />{data.title}</ListItem>
                         </NavLink>

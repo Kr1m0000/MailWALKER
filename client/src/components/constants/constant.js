@@ -18,11 +18,11 @@ export const EMPTY_TABS = {
         heading: "You don't have any saved drafts.",
         subHeading: "Saving a draft allows you to keep a message you aren't ready to send yet."
     },
-    "api/email/starreddisplay": {
+    "api/email/starred": {
         heading: 'No starred messages',
         subHeading: "Stars let you give messages a special status to make them easier to find."
     },
-    "api/email/sentemails": {
+    "api/email/sent": {
         heading: 'No sent messages!',
         subHeading: 'Send one now!'
     },
@@ -30,7 +30,7 @@ export const EMPTY_TABS = {
         heading: 'No conversations in Bin.',
         subHeading: ''
     },
-    "api/email/bindisplay": {
+    "api/email/bin": {
         heading: 'No conversations in Bin.',
         subHeading: ''
     }

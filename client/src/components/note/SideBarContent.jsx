@@ -7,9 +7,9 @@ import { NavLink, useParams } from 'react-router-dom';
 
 
 const Container = styled(Box)`
-    padding: 16px;
+    padding: 15px;
     & > ul {
-        padding: 20px 0 0 5px;
+        padding: 10px 0 0 5px;
         font-size: 20px;
         font-weight: 700;
         cursor: pointer;
@@ -30,9 +30,11 @@ const ComposeButton = styled(Button)`
     padding: 15px;
     min-width: 150px;
     text-transform: none;
+    font-size: 16px;
+    font-weight: 700;
 `
 
-const SideBarContent = () => {
+const SideBarContent = ({notesEndpoint}) => {
 
     const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -51,8 +53,8 @@ const SideBarContent = () => {
                 {
                     SIDEBAR_DATA.map(data => (
                         <NavLink key={data.name} to={`/note/${data.name}`}>
-                            <ListItem style={ type === "izan/" + data.name.toLowerCase() ? {
-                                backgroundColor: 'white',
+                            <ListItem style={ notesEndpoint === "api/note/" + data.name.toLowerCase() ? {
+                                backgroundColor: '#d3e3fd',
                                 borderRadius: '0 16px 16px 0'
                             } : {}}><data.icon fontSize="medium" />{data.title}</ListItem>
                         </NavLink>

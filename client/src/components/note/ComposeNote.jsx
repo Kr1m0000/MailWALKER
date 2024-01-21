@@ -89,12 +89,12 @@ const ComposeNote = ({ open, setOpenDrawer }) => {
           <Close fontSize="small" onClick={(e) => closeCompose(e)} />
         </Header>
         <RecipientWrapper>
-          {/* <InputBase
+          <InputBase
             placeholder="Title"
             name="subject"
             onChange={(e) => onValueChange(e)}
             value={data.subject}
-          /> */}
+          />
         </RecipientWrapper>
         <TextField
           multiline

@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useContext, useCallback } from "react";
-import { Box, List, Checkbox, CircularProgress } from "@mui/material";
+import { Box, List, Checkbox, CircularProgress, IconButton } from "@mui/material";
 import Email from "./Email";
-import { DeleteOutline } from "@mui/icons-material";
+import { DeleteOutline, Refresh } from "@mui/icons-material";
 import { UidContext } from "../AppContext";
 import axios from "axios";
 import { EMPTY_TABS } from "../constants/constant";
 import NoMails from "./common/NoMails";
 
 const Emails = ({ openDrawer, mailboxEndpoint }) => {
-  console.log("Rendering Emails component");
   const [receivedEmails, setReceivedEmails] = useState([]);
   const [selectedEmails, setSelectedEmails] = useState([]);
   const [userEmail, setUserEmail] = useState("");
@@ -28,7 +27,6 @@ const Emails = ({ openDrawer, mailboxEndpoint }) => {
         `Error fetching received emails from ${mailboxEndpoint}:`,
         error
       );
-      // Handle error
       setLoading(false);
     }
   }, [apiUrl, mailboxEndpoint, userEmail]);
@@ -58,17 +56,20 @@ const Emails = ({ openDrawer, mailboxEndpoint }) => {
 
   const deleteSelectedEmails = async () => {
     try {
-      await axios.post(`${apiUrl}api/email/bin/${userEmail}`, {
+      await axios.post(`${apiUrl}api/email/setbin/${userEmail}`, {
         emailIds: selectedEmails,
       });
-      // Refresh the email list after move/delete
       fetchReceivedEmails();
-      // Clear selected emails
       setSelectedEmails([]);
     } catch (error) {
       console.error("Error moving/deleting selected emails:", error);
     }
   };
+
+  const refreshEmails = useCallback(() => {
+    setLoading(true);
+    fetchReceivedEmails();
+  }, [fetchReceivedEmails]);
 
   return loading ? (
     <CircularProgress
@@ -98,12 +99,16 @@ const Emails = ({ openDrawer, mailboxEndpoint }) => {
         }}
       >
         <Checkbox size="small" onChange={selectAllEmails} />
-        <DeleteOutline onClick={deleteSelectedEmails} />
+        <IconButton onClick={deleteSelectedEmails} color="black">
+        <DeleteOutline />
+        </IconButton>
+        <IconButton onClick={refreshEmails} color="black">
+          <Refresh />
+        </IconButton>
       </Box>
       <List style={{ maxHeight: "500px", overflowY: "auto" }}>
         {receivedEmails.map((email) => (
           <Email
-            
             email={email}
             key={email._id}
             selectedEmails={selectedEmails}
@@ -111,9 +116,9 @@ const Emails = ({ openDrawer, mailboxEndpoint }) => {
           />
         ))}
       </List>
-      {/* {receivedEmails.length === 0 && (
+      {receivedEmails.length === 0 && (
         <NoMails message={EMPTY_TABS[mailboxEndpoint]} />
-      )} */}
+      )}
     </Box>
   );
 };

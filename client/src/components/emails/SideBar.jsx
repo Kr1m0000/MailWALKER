@@ -7,7 +7,7 @@ const StyledDrawer = styled(Drawer)`
     margin-top: 54px;
 `
 
-const SideBar = ({ toggleDrawer, openDrawer }) => {
+const SideBar = ({ toggleDrawer, openDrawer, mailboxEndpoint }) => {
 
     return (
         <StyledDrawer
@@ -30,7 +30,7 @@ const SideBar = ({ toggleDrawer, openDrawer }) => {
                 },
             }}
           >
-            <SideBarContent />
+            <SideBarContent  mailboxEndpoint={mailboxEndpoint} />
         </StyledDrawer>
     )
 }

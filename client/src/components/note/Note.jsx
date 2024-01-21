@@ -7,11 +7,11 @@ import { UidContext } from '../AppContext';
 
 const Wrapper = styled(ListItem)`
     padding: 10px;
-    background: #f2f6fc;
+    background: #ffd86c;
     cursor: pointer;
     overflow: hidden;
-    border-radius: 12px; /* Add rounded corners */
-    margin-bottom: 16px; /* Add more margin between Note components */
+    border-radius: 12px;
+    margin-bottom: 16px;
 
     & > div {
         display: flex;
@@ -20,17 +20,14 @@ const Wrapper = styled(ListItem)`
     }
 
     & > div > p {
-        font-size: 40px; /* Increase font size for paragraphs */
+        font-size: 15px;
         max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        margin-bottom: 10px; /* Add more margin to separate lines */
+        margin-bottom: 10px;
     }
 `;
-
-
-
 
 const Indicator = styled(Typography)`
     font-size: 12px !important;
@@ -48,15 +45,10 @@ const DateText = styled(Typography)({
     color: '#5F6368',
 });
 
-
-
 const Note = ({ note, selectedNotes, setSelectedNotes }) => {
     const navigate = useNavigate();
     const apiUrl = process.env.REACT_APP_API_URL;
     const uid = useContext(UidContext);
-   
-
-   
 
     const handleChange = () => {
         if (selectedNotes.includes(note._id)) {
@@ -67,25 +59,17 @@ const Note = ({ note, selectedNotes, setSelectedNotes }) => {
     };
 
     return (
+        
         <Wrapper>
+            
             <Checkbox size="small" checked={selectedNotes.includes(note._id)} onChange={handleChange} />
-           
-            <Box
-                // onClick={() => navigate("/email/view", { state: { note: note } })}
-            >
-                <Typography style={{ width: 200 }}></Typography>
-                 
-                <Typography>
+           <Typography variant="h6" style={{ marginBottom: 3, marginRight: 15, fontSize: 20, fontWeight: 700 }}>
+                {note.subject}
+            </Typography>
+            <Box style={{ flex: 1, marginBottom: -10 }}  >
+                <Typography variant="body1" style={{ width: '100%', whiteSpace: 'pre-wrap' }}>
                     {note.body}
                 </Typography>
-             
-
-                {/* <DateText>
-                    {new window.Date(note.sentAt).getDate()}&nbsp;
-                    {new window.Date(note.sentAt).toLocaleString('default', {
-                        month: 'long',
-                    })}
-                </DateText> */}
             </Box>
         </Wrapper>
     );

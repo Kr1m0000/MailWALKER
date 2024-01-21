@@ -5,15 +5,15 @@ router.post('/save', emailController.saveSendEmails);
 //router.post('/save-draft', emailController.saveSendEmails);
 
 router.get('/inbox/:email', emailController.getReceivedEmails);
-router.get('/sentemails/:email', emailController.getSentEmails);
+router.get('/sent/:email', emailController.getSentEmails);
 
-router.post('/starred/:email', emailController.toggleStarredEmail);
-router.post('/unstarred/:email', emailController.untoggleStarredEmail);
-router.get('/starreddisplay/:email', emailController.getStarredEmails);
+router.post('/setstarred/:email', emailController.toggleStarredEmail);
+router.post('/setunstarred/:email', emailController.untoggleStarredEmail);
+router.get('/starred/:email', emailController.getStarredEmails);
 
-router.post('/bin/:email', emailController.moveEmailsToBin);
-router.post('/unbin/:email', emailController.removeEmailsFromBin);
-router.get('/bindisplay/:email', emailController.displayBinEmails);
+router.post('/setbin/:email', emailController.moveEmailsToBin);
+router.post('/setunbin/:email', emailController.removeEmailsFromBin);
+router.get('/bin/:email', emailController.displayBinEmails);
 
 router.put('/delete/:email', emailController.deleteEmail);
 

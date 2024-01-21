@@ -35,14 +35,23 @@ const NotesPage = () => {
 
       <Wrapper>
         <SideNavBar/>
-        <SideBar toggleDrawer={toggleDrawer} openDrawer={openDrawer} />
+        <Routes>
+                 <Route path="/notes" element={<SideBar toggleDrawer={toggleDrawer} openDrawer={openDrawer} notesEndpoint="api/note/notes" />} />
+                 <Route path="/archived" element={<SideBar toggleDrawer={toggleDrawer} openDrawer={openDrawer} notesEndpoint="api/note/archived" />} /> 
+                 
+                 <Route
+                index // This makes this route the default child route
+                element={<Navigate to="notes" replace />} // Redirect to /email/inbox
+              />
+        </Routes>
+       
         <MainContent>
           
           <Suspense fallback={<SuspenseLoader />}>
           <Routes>
                 {/* <Route path="/view" element={<ViewEmail openDrawer={openDrawer} />} /> */}
-                <Route path="/notes" element={<Notes openDrawer={openDrawer} notesEndpoint="api/note/getNotes" />} />
-                 <Route path="/archived" element={<Notes openDrawer={openDrawer} notesEndpoint="api/note/getBinNotes" />} /> 
+                <Route path="/notes" element={<Notes openDrawer={openDrawer} notesEndpoint="api/note/notes" />} />
+                 <Route path="/archived" element={<Notes openDrawer={openDrawer} notesEndpoint="api/note/archived" />} /> 
 
                  <Route
                 index // This makes this route the default child route

@@ -51,7 +51,7 @@ const Date = styled(Typography)({
     color: '#5E5E5E'
 })
 
-const ViewEmail = (openDrawer) => {
+const ViewEmail = (openDrawer, mailboxEndpoint) => {
 
  
     
@@ -59,7 +59,7 @@ const ViewEmail = (openDrawer) => {
     const { email } = state;
 
     return (
-        <Box style={openDrawer ? { marginLeft: 200, width: '86%' } : { marginLeft: 16, width: '100%' } }>
+        <Box style={openDrawer ? { marginLeft: 200, width: '84%' } : { marginLeft: 16, width: '98%' } }>
             <IconWrapper>
                 <ArrowBack fontSize='small' color="action" onClick={() => window.history.back() } />
                 <Delete fontSize='small' color="action" style={{ marginLeft: 40 }} />
@@ -79,7 +79,9 @@ const ViewEmail = (openDrawer) => {
                             {(new window.Date(email.sentAt)).getFullYear()} 
                         </Date>
                     </Box>
-                    <Typography style={{ marginTop: 20 }}>{email.body}</Typography>
+                    <Typography variant="body1" style={{ width: '100%', whiteSpace: 'pre-wrap' }}>
+                    {email.body}
+                    </Typography>
                 </Container>
             </Box>
         </Box>

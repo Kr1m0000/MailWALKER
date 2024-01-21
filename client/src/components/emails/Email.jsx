@@ -67,7 +67,7 @@ const Email = ({ email, selectedEmails, setSelectedEmails }) => {
 
     const toggleStarredEmail = async () => {
         try {
-            await axios.post(`${apiUrl}api/email/starred/${userEmail}`, {
+            await axios.post(`${apiUrl}api/email/setstarred/${userEmail}`, {
                 emailId: email._id,
             });
             // Refresh the email list after toggling starred status

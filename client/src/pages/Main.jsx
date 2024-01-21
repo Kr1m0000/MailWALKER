@@ -6,6 +6,7 @@ import SuspenseLoader from "../components/emails/common/SuspenseLoader";
 import Emails from "../components/emails/Emails";
 import SideNavBar from "../components/emails/SideNavBar";
 import ViewEmail from "../components/emails/ViewEmail";
+import Profil from "./profil";
 
 const Wrapper = styled(Box)`
   display: flex;
@@ -31,15 +32,24 @@ const Main = () => {
 
       <Wrapper>
         <SideNavBar />
-        <SideBar toggleDrawer={toggleDrawer} openDrawer={openDrawer} />
+        <Routes>
+                <Route path="/bin" element={<SideBar toggleDrawer={toggleDrawer} openDrawer={openDrawer} mailboxEndpoint="api/email/bin" />} />
+                 <Route path="/inbox" element={<SideBar toggleDrawer={toggleDrawer} openDrawer={openDrawer} mailboxEndpoint="api/email/inbox" />} /> 
+                 <Route path="/sent" element={<SideBar toggleDrawer={toggleDrawer} openDrawer={openDrawer} mailboxEndpoint="api/email/sent" />} />
+                 <Route path="/starred" element={<SideBar toggleDrawer={toggleDrawer} openDrawer={openDrawer} mailboxEndpoint="api/email/starred" />} />
+                 <Route
+                index // This makes this route the default child route
+                element={<Navigate to="inbox" replace />} // Redirect to /email/inbox
+              />
+        </Routes>
         <MainContent>
           <Suspense fallback={<SuspenseLoader />}>
             <Routes>
                 <Route path="/view" element={<ViewEmail openDrawer={openDrawer} />} />
-                <Route path="/bin" element={<Emails openDrawer={openDrawer} mailboxEndpoint="api/email/bindisplay" />} />
+                <Route path="/bin" element={<Emails openDrawer={openDrawer} mailboxEndpoint="api/email/bin" />} />
                  <Route path="/inbox" element={<Emails openDrawer={openDrawer} mailboxEndpoint="api/email/inbox" />} /> 
-                 <Route path="/sent" element={<Emails openDrawer={openDrawer} mailboxEndpoint="api/email/sentemails" />} />
-                 <Route path="/starred" element={<Emails openDrawer={openDrawer} mailboxEndpoint="api/email/starreddisplay" />} />
+                 <Route path="/sent" element={<Emails openDrawer={openDrawer} mailboxEndpoint="api/email/sent" />} />
+                 <Route path="/starred" element={<Emails openDrawer={openDrawer} mailboxEndpoint="api/email/starred" />} />
                  <Route
                 index // This makes this route the default child route
                 element={<Navigate to="inbox" replace />} // Redirect to /email/inbox

@@ -13,12 +13,14 @@ import Main from "../../pages/Main";
 import Emails from "../emails/Emails";
 import ViewEmail from "../emails/ViewEmail";
 import Notes from "../note/Notes";
+import Landing from "../../pages/Landing";
+
 
 const index = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing/>} />
         <Route path="/email/*" element={<Main />}>
         <Route
                 index // This makes this route the default child route
@@ -29,7 +31,7 @@ const index = () => {
             element={
               <Emails
                 openDrawer={true}
-                mailboxEndpoint="api/email/bindisplay"
+                mailboxEndpoint="api/email/bin"
               />
             }
           />
@@ -44,7 +46,7 @@ const index = () => {
             element={
               <Emails
                 openDrawer={true}
-                mailboxEndpoint="api/email/sentemails"
+                mailboxEndpoint="api/email/sent"
               />
             }
           />
@@ -54,7 +56,7 @@ const index = () => {
             element={
               <Emails
                 openDrawer={true}
-                mailboxEndpoint="api/email/starreddisplay"
+                mailboxEndpoint="api/email/starred"
               />
             }
           />
@@ -62,6 +64,8 @@ const index = () => {
         </Route>
         <Route path="/profil" element={<Profil />} />
         <Route path="/chat" element={<Chat />} />
+        
+        <Route path="/contact" element={<Chat />} />
         <Route path="/note/*" element={<NotesPage/>}>
         <Route
                 index // This makes this route the default child route
@@ -72,14 +76,14 @@ const index = () => {
             element={
               <Notes
                 openDrawer={true}
-                notesEndpoint="api/note/getnotes"
+                notesEndpoint="api/note/notes"
               />
             }
           />
           <Route
             path="archived"
             element={
-              <Notes openDrawer={true} notesEndpoint="api/note/getbinnotes" />
+              <Notes openDrawer={true} notesEndpoint="api/note/archived" />
             }
           />
         </Route>
